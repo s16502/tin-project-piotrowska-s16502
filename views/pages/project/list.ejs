@@ -1,0 +1,70 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista Projektów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Numer</th>
+                    <th>Nazwa</th>
+                    <th>Data</th>
+                    <th>Lokalizacja</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Astra</td>
+                    <td>20.05.2020</td>
+                    <td>Poznań</td>
+                    <td>
+                        <ul>
+                            
+                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
+                            
+                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
+                          
+                                <a href=""class="list-actions-button-delete">Usuń</a>
+                           
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Panda</td>
+                    <td>11.09.2019</td>
+                    <td>Szczecin</td>
+                    <td>
+                        <ul>
+                            
+                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
+                            
+                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
+                            
+                                <a href=""class="list-actions-button-delete">Usuń</a>
+                            
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>Cristal</td>
+                    <td>10.03.2020</td>
+                    <td>Kraków</td>
+                    <td>
+                        <ul>
+                           
+                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
+                          
+                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
+                           
+                                <a href=""class="list-actions-button-delete">Usuń</a>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            </tbody> 
+        </table>
+        <p><a href="pages/project/form.html"class="list-actions-button-add">Dodaj nowy projekt</a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

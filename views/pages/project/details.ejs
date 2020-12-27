@@ -1,0 +1,63 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły projektu</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+            
+                <label for="number">Number:</label>
+                <input type="number" name="number" value="1" id="number" disabled="true">
+                <span id="errorNumber" class="errors-text"></span> 
+
+                <label for="name">Nazwa:</label>
+                <input type="text" name="name" value="Astra" id="name" disabled="true">
+                <span id="errorName" class="errors-text"></span>
+
+                <label for="date">Data:</label>
+                <input type="text" name="date" value="20.05.2020" id="date" disabled="true">
+                <span id="errorDate" class="errors-text"></span>
+
+                <label for="location">Lokalizacja:</label>
+                <input type="text" name="location" value="Poznań" id="location" disabled="true">
+                <span id="errorLocation" class="errors-text"></span>
+            
+        </form>
+
+        <h2>Konsultaci pracujący na projekcie</h2>
+
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imie konsultanta</th>
+                    <th>Nazwisko konsultanta</th>
+                    <th>Ilość godzin</th>
+                    <th>Rodzaj pracy</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Anna</td>
+                    <td>Nowak</td>
+                    <td>12</td>
+                    <td>Raportowanie</td>
+                  
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>Piotr</td>
+                    <td>Kot</td>
+                    <td>9</td>
+                    <td>PM</td>
+                </tr>
+            </tbody>
+           
+        </table>
+
+        <div class="form-buttons">
+            <a href="/pages/consultant/edit.html" class="button-edit">Edytuj</a>  
+            <a href="/pages/consultant/list.html" class="button-cancel">Anuluj</a>  
+        </div>
+        
+    </main>
+<%- include('../../fragments/footer.ejs') %>

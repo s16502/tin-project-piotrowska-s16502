@@ -1,0 +1,29 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Nowy konsultant</h2>
+        <!-- -->
+            <form class="form" novalidate onsubmit="return validateForm();">
+            
+                <label for="firstName">Imię:<sup>*</sup></label>
+                <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków"/>
+                <span id="errorFirstName" class="errors-text"></span>
+            
+            
+                <label for="lastName">Nazwisko:<sup>*</sup></label>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków"/>
+                <span id="errorLastName" class="errors-text"></span>
+            
+                <label for="email">Email:<sup>*</sup></label>
+                <input type="email" name="email" id="email" placeholder="imie.nazwisko@greanleaf.com" />
+                <span id="errorEmail" class="errors-text"></span>          
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Dodaj" class="button-edit" />
+                <a href="pages/consultant/list.html" class="button-cancel">Anuluj</a>    
+            </div>
+        </form> 
+    <!-- -->
+  
+    </main>
+
+<%- include('../../fragments/footer.ejs') %>

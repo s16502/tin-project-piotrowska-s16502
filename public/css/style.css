@@ -1,0 +1,398 @@
+
+html {
+    background-color: #ecf0f1;
+    font-family: sans-serif;
+    
+}
+body {
+    min-width: 360px;
+}
+header, 
+main, 
+footer {
+      background-color: white;
+}
+header,
+main,
+footer,
+nav {
+    margin: 1rem;
+}
+
+header, 
+footer {
+    background-color: #649e49;
+    color: white;
+    padding: 1rem;
+
+}
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    background-color: #bdc3c7;
+}
+
+nav ul {
+    padding: 0;
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    
+}
+
+nav ul li a {
+    display: inline-block;
+    color: #2c3e50;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+nav ul li a:hover {
+    background-color: #649e49;
+    color: #ecf0f1;
+}
+
+nav ul li a.active {
+    background-color: #95a5a6;
+    color: #26778b;
+}
+
+main {
+    padding: 1.5rem;
+}
+
+footer {
+    text-align: center;
+    
+}
+
+main h2 {
+    border-bottom: 1px solid #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.table-list {
+    border-collapse: collapse;
+    color:#2c3e50;
+    width: 100%;
+}
+.table-list,
+.table-list th,
+.table-list td {
+    border: 1px solid #bdc3c7;
+}
+
+.table-list th,
+.table-list td {
+    padding: 0.5rem;
+}
+.table-list th,
+.table-list tbody tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+.list-actions {
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-actions li {
+    display: inline-block;
+}
+
+.list-actions-button-add{
+    min-width: 300;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: rgb(19, 16, 16);
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-right: 1rem;
+    background-color: #649e49; 
+}
+
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add,
+.button-assign,
+.button-cancel,
+.button-edit {
+    display: inline-block;
+    width: 80px;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 5px;
+    color: rgb(19, 16, 16);
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit {
+    margin-right: 1rem;
+}
+
+.list-actions-button-details {
+    background-color: #649e49;    
+}
+.list-actions-button-add:hover,
+.list-actions-button-details:hover {
+    background-color: #949596;
+}
+
+.list-actions-button-edit {
+    background-color: #649e49;
+}
+
+.list-actions-button-edit:hover {
+    background-color: #949596;
+}
+
+.list-actions-button-delete {
+    background-color: #649e49;
+}
+
+.list-actions-button-delete:hover {
+    background-color: #949596;
+}
+
+.list-actions-button-add,
+.button-edit,
+.button-cancel,
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.button-edit,
+.button-cancel,
+.button-add {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.button-edit,
+.button-cancel,
+.button-add {
+    background-color: #649e49;
+}
+
+.button-edit:hover,
+.button-cancel:hover,
+.button-add:hover {
+    background-color: #949596;
+}
+
+button, 
+input, 
+select, 
+textarea { 
+    font-family: inherit; 
+    font-size: 100%; 
+    box-sizing: border-box; 
+    padding: 0; margin: 0; 
+} 
+
+textarea { 
+    overflow: auto; 
+}
+
+.form {
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns:  150px 300px 1fr;
+    /*masonary*/
+    row-gap: 1rem;
+    column-gap: 1rem;
+    
+
+}
+
+.form select, 
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form input[type="email"] {
+    border: 1px solid #7f8c8d;
+    color:#2c3e50;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 300px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.errors-text,
+abbr[title='required'] {
+    color: #c0392b;
+}
+
+.form-buttons{
+    margin-top: 2rem;
+    grid-column: 1 / span 1;
+    grid-column-end: -1;
+}
+
+.button-edit,
+.button-cancel,
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add,
+.form-button-submit,
+.form-button-cancel {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.button-edit,
+.button-cancel,
+.button-add,
+.form-button-submit,
+.form-button-cancel {
+    padding: 0.5rem 1rem;
+}
+
+.button-edit,
+.button-cancel,
+.button-add,
+.form-button-submit
+{
+    background-color: #649e49;
+}
+
+.button-edit:hover,
+.button-cancel:hover,
+.button-add:hover,
+.form-button-submit:hover
+{
+    background-color: #949596;
+}
+
+.form-button-cancel,
+.list-actions-button-delete {
+    background-color: #649e49;
+}
+
+.form-button-cancel:hover,
+.list-actions-button-delete:hover {
+    background-color: #949596;
+}
+
+.form-button-submit,
+.form-button-cancel {
+    width: 100%;
+}
+
+.form-button-cancel {
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-button-submit {
+    margin-bottom: 0.5rem;
+}
+
+@media all and (max-width: 720px) {
+    header {
+        flex-direction: column;
+    }
+    header h1 {
+        text-align: center;
+    }
+    header img {
+        align-self: center;
+    }
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+    }
+    .form {
+        grid-template-columns: 1fr;
+        row-gap:unset;
+        margin-left: unset;
+    }
+    .form .errors-text {
+        margin-bottom: 1rem;
+    }
+    .form-buttons {
+        grid-column: 1 / span 1; 
+    }    
+}
+
+@media all and (max-width: 400px) {
+    body, 
+    nav, 
+    nav ul, 
+    header, 
+    main, 
+    footer {
+        margin: 0;
+    }
+    nav ul li {
+        flex-basis: 100%;
+    }
+}
+
+.errors-text,
+.errors-textarea {
+    font-size: 0.85em;
+    line-height: 2.25rem;
+  }
+  
+.form input.error-input,
+.form select.error-input.button-add {
+    border: 3px solid #e74c3c
+}
+
+    
+   
+
+
+
+
+
+
+
+
+
+  
+  
+

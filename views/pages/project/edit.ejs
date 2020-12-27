@@ -1,0 +1,32 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Edytuj projekt</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+            
+                <label for="number">Numer:</label>
+                <input type="number" name="number" value="1" id="number" disabled="true">
+                <span id="errorFirstName" class="errors-text"></span>
+           
+                <label for="name">Nazwa:</label>
+                <input type="text" name="name" value="Astra" id="name" disabled="true">
+                <span id="errorName" class="errors-text"></span>
+            
+                <label for="location">Lokalizacja</label>
+                <input type="text" name="location" value="Poznań" id="location" disabled="true">
+                <span id="errorLocation" class="errors-text"></span>
+           
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <a href="/pages/project-edit.html" class="button-edit">Edytuj</a>  
+                <a href="/pages/project-list.html" class="button-cancel">Anuluj</a>  
+            </div>
+            
+        
+        </form>
+
+       
+
+       
+        
+    </main>
+<%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,60 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły konsultanta</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+            
+                <label for="empName">Imię:</label>
+                <input type="text" name="empName" value="Jan" id="empName" disabled="true">
+                <span id="errorName" class="errors-text"></span>
+            
+                <label for="empSurname">Nazwisko:</label>
+                <input type="text" name="empSurname" value="Kowalski" id="empSurname" disabled="true">
+                <span id="errorLastName" class="errors-text"></span>
+            
+                <label for="empEmail">Email:</label>
+                <input type="email" name="empEmail" value="jan.kowalski@greenleaf.com" id="empEmail" disabled="true">
+                <span id="errorEmail" class="errors-text"></span>
+            
+        </form>
+
+        <h2>Projekty Konsultanta</h2>
+
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Numer projektu</th>
+                    <th>Nazwa projektu</th>
+                    <th>Ilość godzin</th>
+                    <th>Rodzaj pracy</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Cristal</td>
+                    <td>32</td>
+                    <td>Raportowanie</td>
+                  
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>Alaska</td>
+                    <td>9</td>
+                    <td>PM</td>
+                </tr>
+            </tbody>
+           
+        </table>
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <a href="pages/consultant/edit.html" class="button-edit">Edytuj</a>  
+            <a href="pages/consultant/list.html" class="button-cancel">Anuluj</a>  
+        </div>
+        
+    </main>
+<%- include('../../fragments/footer.ejs') %>

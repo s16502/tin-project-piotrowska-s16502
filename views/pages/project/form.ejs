@@ -1,0 +1,32 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Nowy projekt</h2>
+        <!-- -->
+            <form class="form" novalidate onsubmit="return validateForm();">
+            
+                <label for="number">Numer:<sup>*</sup></label>
+                <input type="number" number="number" id="number" />
+                <span id="errorNumber" class="errors-text"></span>
+
+                <label for="name">Nazwa:<sup>*</sup></label>
+                <input type="text" name="Name" id="name" placeholder="2-60 znaków"/>
+                <span id="errorName" class="errors-text"></span>
+
+                <label for="date">Data:<sup>*</sup></label>
+                <input type="date" date="date" id="date" />
+                <span id="errorDate" class="errors-text"></span>
+            
+                <label for="location">Location:<sup>*</sup></label>
+                <input type="text" name="location" id="location" placeholder="2-60 znaków"  />
+                <span id="errorLocation" class="errors-text"></span>
+            
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Dodaj" class="button-edit" />
+                <a href="/pages/project/list.html" class="button-cancel">Anuluj</a>    
+            </div>
+        </form> 
+    <!-- -->
+  
+    </main>
+<%- include('../../fragments/footer.ejs') %>
