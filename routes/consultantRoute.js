@@ -9,7 +9,7 @@ router.get('/details/:empId', consultantControler.showConsultantDetails);
 
 module.exports = router;
 
-//koment
+
 
 
 
