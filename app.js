@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index');
 const consultantRouter = require('./routes/consultantRoute');
 const projectRouter = require('./routes/projectRoute');
 
+const consApiRouter = require('./routes/api/ConsultantApiRoute');
+const projectApiRouter = require('./routes/api/ProjectApiRoute');
+//const cons_ProjectApiRouter = require('./routes/api/Cons_ProjectApiRoute');
+
 var app = express();
 
 // view engine setup
@@ -23,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/consultants', consultantRouter);
 app.use('/projects', projectRouter);
+app.use('/api/consultants', consApiRouter);
+app.use('/api/projects', projectApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
