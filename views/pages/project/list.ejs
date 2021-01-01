@@ -12,57 +12,25 @@
                 </tr>
             </thead>
             <tbody>
+            <% for (let project of projects) { %>
                 <tr>
-                    <td>01</td>
-                    <td>Astra</td>
-                    <td>20.05.2020</td>
-                    <td>Poznań</td>
+                    <td><%= project.projectId %></td>
+                    <td><%= project.name %></td>
+                    <td><%= project.date.toISOString().split('T')[0] %></td>
+                    <td><%= project.location %></td>
                     <td>
-                        <ul>
+                        <ul class="list-actions">
                             
-                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
+                                <a href="/projects/details/<%=project.projectId%>" class="list-actions-button-details">Szczegóły</a>
                             
-                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/project/edit/<%=project.projectId%>" class="list-actions-button-edit">Edytuj</a>
                           
-                                <a href=""class="list-actions-button-delete">Usuń</a>
+                                <a href="/project/delete/<%=project.projectId%>"class="list-actions-button-delete">Usuń</a>
                            
                         </ul>
                     </td>
                 </tr>
-                <tr>
-                    <td>02</td>
-                    <td>Panda</td>
-                    <td>11.09.2019</td>
-                    <td>Szczecin</td>
-                    <td>
-                        <ul>
-                            
-                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
-                            
-                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
-                            
-                                <a href=""class="list-actions-button-delete">Usuń</a>
-                            
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>03</td>
-                    <td>Cristal</td>
-                    <td>10.03.2020</td>
-                    <td>Kraków</td>
-                    <td>
-                        <ul>
-                           
-                                <a href="pages/project/details.html" class="list-actions-button-details">Szczegóły</a>
-                          
-                                <a href="pages/project/edit.html" class="list-actions-button-edit">Edytuj</a>
-                           
-                                <a href=""class="list-actions-button-delete">Usuń</a>
-                            
-                        </ul>
-                    </td>
-                </tr>
+            <% } %>
             </tbody> 
         </table>
         <p><a href="pages/project/form.html"class="list-actions-button-add">Dodaj nowy projekt</a></p>

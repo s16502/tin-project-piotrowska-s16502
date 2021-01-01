@@ -1,5 +1,14 @@
+const ConsultantRepository = require('../repository/mysql2/ConsultantRepository');
+
+
 exports.showConsultantList = (req, res, next) => {
-    res.render('pages/consultant/list', {navLocation: 'consultant'});
+    ConsultantRepository.getConsultants()
+        .then(conss => {
+            res.render('pages/consultant/list', {
+                conss: conss,
+                navLocation: 'cons'
+            });
+        });
 }
 
 exports.showAddConsultantForm = (req, res, next) => {

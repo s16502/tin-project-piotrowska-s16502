@@ -11,56 +11,26 @@
                 </tr>
             </thead>
             <tbody>
+            <% for (let cons of conss) { %>
                 <tr>
-                    <td>Jan</td>
-                    <td>Kowalski</td>
-                    <td>jan.kowalski@greenleaf.com</td>
+                    <td><%= cons.firstName %></td>
+                    <td><%= cons.lastName %></td>
+                    <td><%= cons.email %></td>
                     <td>
-                        <ul>
+                        <ul class="list-actions">
                             
-                                <a href="/pages/consultant/details.html" class="list-actions-button-details">Szczegóły</a>
+                                <a href="/consultants/details/<%=cons.consId%>" class="list-actions-button-details">Szczegóły</a>
                             
                            
-                                <a href="pages/consultant/edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/consultants/edit/<%=cons.consId%>" class="list-actions-button-edit">Edytuj</a>
                             
                            
-                                <a href=""class="list-actions-button-delete">Usuń</a>
+                                <a href="/consultants/delete/<%=cons.consId%>"class="list-actions-button-delete">Usuń</a>
                             
                         </ul>
                     </td>
                 </tr>
-                <tr>
-                    <td>Anna</td>
-                    <td>Nowak</td>
-                    <td>anna.nowak@greenleaf.com</td>
-                    <td>
-                        <ul>
-                            
-                                <a href="/pages/consultant/details.html" class="list-actions-button-details">Szczegóły</a>
-                            
-                                <a href="/pages/consultant/edit.html" class="list-actions-button-edit">Edytuj</a>
-                            
-                                <a href=""class="list-actions-button-delete">Usuń</a>
-                            
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Piotr</td>
-                    <td>Kot</td>
-                    <td>piotr.kot@greenleaf.com</td>
-                    <td>
-                        <ul>
-                            
-                                <a href="/pages/consultant/details.html" class="list-actions-button-details">Szczegóły</a>
-                            
-                                <a href="/pages/consultant/edit.html" class="list-actions-button-edit">Edytuj</a>
-                            
-                                <a href=""class="list-actions-button-delete">Usuń</a>
-
-                        </ul>
-                    </td>
-                </tr>
+            <% } %>    
             </tbody> 
         </table>
         <p><a href="/pages/consultant/form.html" class="list-actions-button-add">Dodaj nowego konsultanta</a></p>
