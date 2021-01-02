@@ -5,6 +5,8 @@ const projectControler = require('../controllers/projectController');
 
 router.get('/', projectControler.showProjectList);
 router.get('/add', projectControler.showAddProjectForm);
-//router.get('/details/:empId', projectControler.showProjectDetails);
+router.get('/edit/:projectId', projectControler.showEditProjectForm);
+router.get('/details/:projectId', projectControler.showProjectDetails);
+router.get('/delete/:projectId', projectControler.deleteProject);
 
 module.exports = router;

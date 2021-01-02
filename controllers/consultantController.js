@@ -12,7 +12,7 @@ exports.showConsultantList = (req, res, next) => {
 }
 
 exports.showAddConsultantForm = (req, res, next) => {
-    res.render('consultant/form', {
+    res.render('/pages/consultant/form', {
         cons: {},
         pageTitle: 'Nowy konsultant',
         formMode: 'createNew',

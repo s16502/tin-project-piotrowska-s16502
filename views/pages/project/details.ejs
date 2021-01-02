@@ -1,5 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+
         <h2>Szczegóły projektu</h2>
         <form class="form" novalidate onsubmit="return validateForm();">
             
@@ -44,19 +46,32 @@
             </tbody>
 
             <tbody>
-                <tr>
-                    <td>Piotr</td>
-                    <td>Kot</td>
-                    <td>9</td>
-                    <td>PM</td>
-                </tr>
+                <% for (let e of projects.cons_projects) { %>
+
+                    <tr>
+                        <td><a href="/consultants/details/<%= e.cons.consId %>"><%= e.project.name %></a></td>
+                        <td><%= e.hours %></td>
+                        <td><%= e.workType %></td>
+                      
+                    </tr>
+                <% } %>
             </tbody>
            
         </table>
+        <% } %>
 
         <div class="form-buttons">
-            <a href="/pages/consultant/edit.html" class="button-edit">Edytuj</a>  
-            <a href="/pages/consultant/list.html" class="button-cancel">Anuluj</a>  
+            <p id="errorsSummary" class="errors-text"></p>
+            
+            <% if (formMode != 'showDetails') { %>
+                <!--<input class="form-button-submit" type="submit" value="<%=btnLabel%>" />-->
+                <a class="form-button-cancel" href="/projects">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/projects">Powrót</a>
+            <% } %>
+            
+            <!--<a href="/pages/consultant/edit.html" class="button-edit">Edytuj</a>  
+            <a href="/pages/consultant/list.html" class="button-cancel">Anuluj</a> -->  
         </div>
         
     </main>

@@ -1,8 +1,68 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Nowy projekt</h2>
-        <!-- -->
-            <form class="form" novalidate onsubmit="return validateForm();">
+        <script type="application/javascript" src="/js/validationProjectForm.js"></script>
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+
+        <input type="hidden" name="projectId" id="projectId" value="<%= project.projectId %>">
+        <span></span>
+
+        <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= project.name %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span></span>
+        
+
+        <input type="date" name="date" id="date" value="<%= project.date.toISOString().split('T')[0] %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span></span>
+
+        <input type="text" name="location" id="location" placeholder="2-60 znaków" value="<%= project.location %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span></span>
+
+        </form>
+
+        <% if (formMode == 'showDetails') { %>
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        
+                        <th>Imie i nazwisko</th>
+                        <th>Ilość godzin</th>
+                        <th>Rodzaj pracy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for (let e of project.cons_projects) { %>
+    
+                    <tr>
+                        <td><a href="/consultants/details/<%= e.consultant.consId %>"><%= e.consultant.firstName %> <%= e.consultant.lastName %></a></td>
+                        <td><%= e.hours %></td>
+                        <td><%= e.workType %></td>
+                      
+                    </tr>
+                <% } %>
+                </tbody>
+               
+            </table>
+        
+            <% } %>
+
+
+
+        <% if (formMode == 'edit' || 'showDetails') { %>
+        <div class="section-buttons">
+            <a href="/projects/edit/<%= project.projectId %>" class="button-edit">Edytuj</a>
+            <a href="/projects" class="button-cancel">Anuluj</a>
+        </div>
+    
+        <% } %>
+        
+        
+        
+        <!--<h2>Nowy projekt</h2>
+             <form class="form" novalidate onsubmit="return validateForm();">
             
                 <label for="number">Numer:<sup>*</sup></label>
                 <input type="number" number="number" id="number" />
@@ -25,7 +85,8 @@
                 <input type="submit" value="Dodaj" class="button-edit" />
                 <a href="/pages/project/list.html" class="button-cancel">Anuluj</a>    
             </div>
-        </form> 
+            
+        </form> -->
     <!-- -->
   
     </main>
