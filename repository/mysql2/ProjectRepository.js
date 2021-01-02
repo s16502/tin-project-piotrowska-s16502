@@ -16,8 +16,8 @@ exports.getProjectById = (projectId) => {
     const query = `SELECT c.consId, c.firstName, c.lastName, c.email, c.pass, cp.cons_projectId, cp.hours,
     cp.workType, p.projectId, p.name, p.location, p.date 
     FROM Project p
-    left join Cons_Project cp on cp.cons_projectId = p.projectId 
-    left join Consultant c on cp.cons_projectId = c.consId
+    left join Cons_Project cp on cp.projectId = p.projectId 
+    left join Consultant c on cp.consId = c.consId
     where p.projectId = ?`
 
 return db.promise().query(query, [projectId])

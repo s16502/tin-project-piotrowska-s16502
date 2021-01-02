@@ -53,6 +53,14 @@ exports.showConsultantDetails = (req, res, next) => {
   
 }
 
+exports.deleteConsultant = (req, res, next) => {
+    const consultantId = req.params.consId;
+    ConsultantRepository.deleteConsultant(consId)
+    .then( () => {
+        res.redirect('/consultants');
+    });
+}
+
 
 
 

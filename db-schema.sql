@@ -38,16 +38,17 @@ INSERT IGNORE INTO `tin-s16502`.`Consultant` (`consId`, `firstName`, `lastName`,
 
 INSERT IGNORE INTO `tin-s16502`.`Project` (`projectId`, `name`, `Date`, `location`) VALUES
   (1, 'Astra', '2020-12-31', 'Poznan') ,
-  (2, 'Panda', '2021-01-12', 'Szczecin') 
+  (2, 'Panda', '2021-01-12', 'Szczecin'), 
+  (3, 'Neptun', '2019-01-02', 'Warszawa') 
 ;
 
 INSERT IGNORE INTO `tin-s16502`.`Cons_Project` (`cons_projectId`, `hours`, `workType`, `consId`, `projectId`) VALUES
-  (1, '10', 'raport', 1 , 1) ,
-  (2, '2', 'wizja', 1 , 2) ,
-  (3, '3', 'oferta', 2 , 1) ,
-  (4, '13', 'raport', 3 , 2) ,
-  (5, '20', 'wizja', 3, 1) ,
-  (6, '7', 'wizja', 2 , 2)
+  (1, 10, 'raport', 1 , 1) ,
+  (2, 2, 'wizja', 1 , 2) ,
+  (3, 3, 'oferta', 2 , 1) ,
+  (4, 13, 'raport', 3 , 2) ,
+  (5, 20, 'wizja', 3, 1) ,
+  (6, 7, 'wizja', 2 , 3)
 ;
 
 

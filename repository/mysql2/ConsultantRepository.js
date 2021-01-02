@@ -13,13 +13,13 @@ exports.getConsultants = () => {
 };
 
 exports.getConsultantById = (consId) => {
+    
     const query = `SELECT c.consId, c.firstName, c.lastName, c.email, c.pass, cp.cons_projectId, cp.hours,
     cp.workType, p.projectId, p.name, p.location, p.date 
     FROM Consultant c 
-    left join Cons_Project cp on cp.cons_projectId = c.consId 
-    left join Project p on cp.cons_projectId = p.projectId
-    where c.consId = ?`
-
+    left join Cons_Project cp on cp.consId = c.consId 
+    left join Project p on cp.projectId = p.projectId
+    where c.consId = ?;`
 
 return db.promise().query(query, [consId])
     .then( (results, fields) => {
