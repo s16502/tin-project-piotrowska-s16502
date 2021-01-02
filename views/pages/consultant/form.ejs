@@ -1,7 +1,70 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Nowy konsultant</h2>
-        <!-- -->
+        <script type="application/javascript" src="/js/validationConsultForm.js"></script>
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+
+        <input type="hidden" name="_id" value="<%= cons.consId %>">
+        <span></span>
+
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= cons.firstName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span></span>
+        
+
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= cons.lastName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span></span>
+
+        <input type="email" name="email" id="email" placeholder="np. nazwa@greanleaf.pl" value="<%= cons.email %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span></span>
+
+        </form>
+
+        <% if (formMode == 'showDetails') { %>
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        
+                        <th>Nazwa projektu</th>
+                        <th>Ilość godzin</th>
+                        <th>Rodzaj pracy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for (let e of cons.cons_projects) { %>
+    
+                    <tr>
+                        <td><a href="/projects/details/<%= e.projectId %>"><%= e.project.name %></a></td>
+                        <td><%= e.hours %></td>
+                        <td><%= e.workType %></td>
+                      
+                    </tr>
+                <% } %>
+                </tbody>
+               
+            </table>
+        
+            <% } %>
+
+
+
+        <% if (formMode == 'edit' || 'showDetails') { %>
+        <div class="section-buttons">
+            <a href="/consultants/edit/<%= cons.consId %>" class="button-edit">Edytuj</a>
+            <a href="/consultants" class="button-cancel">Anuluj</a>
+        </div>
+    
+        <% } %>
+
+    
+
+
+
+
+        <!--<h2>Nowy konsultant</h2>
             <form class="form" novalidate onsubmit="return validateForm();">
             
                 <label for="firstName">Imię:<sup>*</sup></label>
@@ -21,7 +84,8 @@
                 <input type="submit" value="Dodaj" class="button-edit" />
                 <a href="pages/consultant/list.html" class="button-cancel">Anuluj</a>    
             </div>
-        </form> 
+        </form>  -->
+            
     <!-- -->
   
     </main>

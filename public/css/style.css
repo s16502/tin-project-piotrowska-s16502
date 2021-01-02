@@ -217,13 +217,9 @@ textarea {
 
 .form {
     margin-left: 2rem;
-    display: grid;
-    grid-template-columns:  150px 300px 1fr;
-    /*masonary*/
-    row-gap: 1rem;
+    display: grid; 
+    row-gap: 0.5rem;
     column-gap: 1rem;
-    
-
 }
 
 .form select, 
@@ -283,11 +279,15 @@ abbr[title='required'] {
 }
 
 .button-edit,
-.button-cancel,
 .button-add,
 .form-button-submit
 {
     background-color: #649e49;
+}
+
+.button-cancel 
+{
+    background-color: #d61212;
 }
 
 .button-edit:hover,
