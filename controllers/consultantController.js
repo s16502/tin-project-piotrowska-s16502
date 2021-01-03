@@ -61,6 +61,26 @@ exports.deleteConsultant = (req, res, next) => {
     });
 }
 
+exports.addConsultant = (req, res, next) => {
+    const consData = { ...req.body };
+    ConsultantRepository.createConsultant(consData)
+        .then( result => {
+            res.redirect('/consultants');
+        });
+};
+
+exports.updateConsultant = (req, res, next) => {
+    const consId = req.body.consId;
+    const consData = { ...req.body };
+
+    ConsultantRepository.updateConsultant(consId, consData)
+        .then( result => {
+            res.redirect('/consultants');
+        });
+};
+
+
+
 
 
 

@@ -75,9 +75,8 @@ exports.updateConsultant = (consId, consData) => {
     const firstName = consData.firstName;
     const lastName = consData.lastName;
     const email = consData.email;
-    const pass = consData.pass;
-    const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ?, pass = ? where consId = ?`;
-    return db.promise().execute(sql, [firstName, lastName, email, pass, consId]);
+    const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ? where consId = ?`;
+    return db.promise().execute(sql, [firstName, lastName, email, consId]);
 };
 
 exports.deleteConsultant = (consId) => {

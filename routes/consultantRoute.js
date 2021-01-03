@@ -8,6 +8,8 @@ router.get('/add', consultantControler.showAddConsultantForm);
 router.get('/edit/:consId', consultantControler.showEditConsultantForm);
 router.get('/details/:consId', consultantControler.showConsultantDetails);
 router.get('/delete/:consId', consultantControler.deleteConsultant);
+router.post('/add', consultantControler.addConsultant); 
+router.post('/edit', consultantControler.updateConsultant);
 
 module.exports = router;
 

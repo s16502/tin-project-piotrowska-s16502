@@ -10,24 +10,21 @@
 
         <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= project.name %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span></span>
+        <span id="errorName" class="errors-text"></span>
         
 
         <input type="date" name="date" id="date" value="<%= project.date.toISOString().split('T')[0] %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span></span>
+        <span id="errorDate" class="errors-text"></span>
 
         <input type="text" name="location" id="location" placeholder="2-60 znaków" value="<%= project.location %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span></span>
-
-        </form>
+        <span id="errorLocation" class="errors-text"></span>
 
         <% if (formMode == 'showDetails') { %>
             <table class="table-list">
                 <thead>
                     <tr>
-                        
                         <th>Imie i nazwisko</th>
                         <th>Ilość godzin</th>
                         <th>Rodzaj pracy</th>
@@ -40,7 +37,6 @@
                         <td><a href="/consultants/details/<%= e.consultant.consId %>"><%= e.consultant.firstName %> <%= e.consultant.lastName %></a></td>
                         <td><%= e.hours %></td>
                         <td><%= e.workType %></td>
-                      
                     </tr>
                 <% } %>
                 </tbody>
@@ -49,17 +45,26 @@
         
             <% } %>
 
-
-
-        <% if (formMode == 'edit' || 'showDetails') { %>
+        <% if (formMode =='showDetails') { %>
         <div class="section-buttons">
             <a href="/projects/edit/<%= project.projectId %>" class="button-edit">Edytuj</a>
             <a href="/projects" class="button-cancel">Anuluj</a>
         </div>
     
         <% } %>
+
+        <% if (formMode == 'edit' ) { %>
+            <div class="section-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="button-edit" value="Zapisz"/>
+                <a href="/projects" class="button-cancel">Anuluj</a>
+            </div>
         
-        
+            <% } %>
+        </form>
+    </main>
+<%- include('../../fragments/footer.ejs') %>    
+
         
         <!--<h2>Nowy projekt</h2>
              <form class="form" novalidate onsubmit="return validateForm();">
@@ -89,5 +94,4 @@
         </form> -->
     <!-- -->
   
-    </main>
-<%- include('../../fragments/footer.ejs') %>
+
