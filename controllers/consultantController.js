@@ -1,5 +1,5 @@
 const ConsultantRepository = require('../repository/mysql2/ConsultantRepository');
-
+const ProjectRepository = require('../repository/mysql2/ProjectRepository');
 
 exports.showConsultantList = (req, res, next) => {
     ConsultantRepository.getConsultants()
@@ -10,9 +10,9 @@ exports.showConsultantList = (req, res, next) => {
             });
         });
 }
-
+        
 exports.showAddConsultantForm = (req, res, next) => {
-    res.render('/pages/consultant/form', {
+    res.render('pages/consultant/form', {
         cons: {},
         pageTitle: 'Nowy konsultant',
         formMode: 'createNew',
@@ -79,7 +79,36 @@ exports.updateConsultant = (req, res, next) => {
         });
 };
 
+exports.addConsultantToProjectForm = (req, res, next) => {
+    
+    let allCons, allProjs;
+    ConsultantRepository.getConsultants()
+    .then(cons => {
+        allCons = cons;
+        return ProjectRepository.getProjects();
+    })
+    .then (projects => {
+        allProjs = projects;
+        res.render('pages/consultant/addproj', {
+            cons: allCons,
+            projects: allProjs,
+            navLocation: 'cons'
+        });
+    });
+};
 
+exports.addConsultantToProject = (req, res, next) => {
+
+    const consId = req.body.select1;
+    const projectId = req.body.select2;
+    const hours = req.body.hours;
+    const workType = req.body.workType;
+
+    ConsultantRepository.assignConsultant(consId, projectId, hours, workType)  
+    .then( result => {
+        res.redirect('/consultants');
+    });
+};
 
 
 

@@ -3,13 +3,15 @@ function validateForm() {
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
     const emailInput = document.getElementById('email');
+    const passInput = document.getElementById('pass');
 
     const errorFirstName = document.getElementById('errorFirstName');
     const errorLastName = document.getElementById('errorLastName');
     const errorEmail = document.getElementById('errorEmail');
+    const errorPass = document.getElementById('errorPass');
     const errorsSummary = document.getElementById('errorsSummary')
 
-    resetErrors([firstNameInput, lastNameInput, emailInput], [errorFirstName, errorLastName, errorEmail], errorsSummary);
+    resetErrors([firstNameInput, lastNameInput, emailInput, passInput], [errorFirstName, errorLastName, errorEmail, errorPass], errorsSummary);
 
     let valid = true;
 
@@ -45,6 +47,16 @@ function validateForm() {
         valid = false;
         emailInput.classList.add("error-input");
         errorEmail.innerText = "Pole powinno zawierać prawidłowy adres email";
+    }
+
+    if (!checkRequired(passInput.value)) {
+        valid = false;
+        passInput.classList.add("error-input");
+        errorPass.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(passInput.value, 2, 60)) {
+        valid = false;
+        passInput.classList.add("error-input");
+        errorPass.innerText = "Pole powinno zawierać od 2 do 60 znaków";
     }
     
            

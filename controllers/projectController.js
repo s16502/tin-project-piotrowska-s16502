@@ -9,9 +9,9 @@ exports.showProjectList = (req, res, next) => {
             });
         });
 }
-
+   
 exports.showAddProjectForm = (req, res, next) => {
-    res.render('/pages/project/form', {
+    res.render('pages/project/form', {
         project: {},
         pageTitle: 'Nowy projekt',
         formMode: 'createNew',

@@ -1,11 +1,11 @@
 function validateForm() {
     
-    const numberInput= document.getElementById('number');
+    //const numberInput= document.getElementById('number');
     const nameInput = document.getElementById('name');
     const dateInput = document.getElementById('date');
     const locationInput = document.getElementById('location');
 
-    const errorNumber = document.getElementById('errorNumber');
+    //const errorNumber = document.getElementById('errorNumber');
     const errorName = document.getElementById('errorName');
     const errorDate = document.getElementById('errorDate');
     const errorLocation = document.getElementById('errorLocation');
@@ -13,6 +13,7 @@ function validateForm() {
 
     let valid = true;
     
+    /*
     if (!checkRequired(numberInput.value)) {
         valid = false;
         numberInput.classList.add("error-input");
@@ -21,7 +22,7 @@ function validateForm() {
         valid = false;
         numberInput.classList.add("error-input");
         errorNumber.innerText = "Pole powinno zawierać numer";
-    }
+    }*/
     
     if (!checkRequired(nameInput.value)) {
         valid = false;

@@ -1,0 +1,43 @@
+
+    <%- include('../../fragments/header.ejs') %>
+    
+    <main>
+        <h2>Przydziel konsultanta do projektu</h2>
+
+        
+        <form class="select" name="form" id="form" method="post" action="/consultants/addtoproject" novalidate onsubmit="return validateForm();">
+        
+            <select name="select2" id="select2">
+                <option name="" value="-1" selected>--wybierz konsultanta--</option>
+                <% for (let c of cons) { %>
+                    <option value="<%= c.consId %>" name="consId" label="<%= c.firstName + ' ' + c.lastName %>"></option>
+                <% } %>
+            </select>
+
+            <select name="select1" id="select1">
+                <option name="" value="-1" selected>--wybierz projekt--</option>
+                <% for (let p of projects) { %>
+                    <option value="<%= p.projectId %>" name="projectId" label="<%= 'Nazwa: ' + p.name %>"></option>
+                <% } %>
+            </select>
+
+            <label for="hours">Ilość godzin:</label>
+            <input type="number" name="hours" id="hours">
+            <span id="errorIloscGodz" class="errors-text"></span>
+            
+            <label for="workType">Typ pracy:</label> 
+            <input type="text" name="workType" id="workType">
+            <span id="errorTypPracy" class="errors-text"></span> <!--dodac walidacje-->
+
+            <div class="section-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="button-edit" value="Zapisz"/>
+                <a href="/consultants" class="button-cancel">Anuluj</a>
+            </div>
+
+        </form>
+
+    </main>
+
+<%- include('../../fragments/footer.ejs') %> 
+    

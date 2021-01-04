@@ -11,16 +11,15 @@
         <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= project.name %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorName" class="errors-text"></span>
-        
 
-        <input type="date" name="date" id="date" value="<%= project.date.toISOString().split('T')[0] %>"
+        <input type="date" name="date" id="date" value="<%= project.date ? project.date.toISOString().split('T')[0] : '' %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorDate" class="errors-text"></span>
 
         <input type="text" name="location" id="location" placeholder="2-60 znaków" value="<%= project.location %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLocation" class="errors-text"></span>
-
+        
         <% if (formMode == 'showDetails') { %>
             <table class="table-list">
                 <thead>
@@ -43,24 +42,35 @@
                
             </table>
         
-            <% } %>
+        <% } %>
 
         <% if (formMode =='showDetails') { %>
         <div class="section-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
             <a href="/projects/edit/<%= project.projectId %>" class="button-edit">Edytuj</a>
             <a href="/projects" class="button-cancel">Anuluj</a>
         </div>
     
         <% } %>
 
-        <% if (formMode == 'edit' ) { %>
+        <% if (formMode == 'edit') { %>
             <div class="section-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" class="button-edit" value="Zapisz"/>
                 <a href="/projects" class="button-cancel">Anuluj</a>
             </div>
-        
-            <% } %>
+        <% } %>
+
+        <% if (formMode == 'createNew') { %>
+            <div class="section-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="button-edit" value="Zapisz"/>
+                <a href="/projects" class="button-cancel">Anuluj</a>
+            </div>
+        <% } %>
+
+       
+
         </form>
     </main>
 <%- include('../../fragments/footer.ejs') %>    

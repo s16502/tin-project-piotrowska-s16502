@@ -90,3 +90,29 @@ exports.deleteConsultant = (consId) => {
 
 };
 
+exports.assignConsultant = (consId, projectId, hours, workType) => {
+
+    const err_sql = 'SELECT COUNT(*) FROM Consultant'
+
+    if(consId == -1 || projectId == -1) {
+        console.log('Nie wybrano żadnej poprawnej opcji')
+        return db.promise().execute(err_sql);
+    }
+
+    const sql1 = 'INSERT into Cons_Project (hours, workType, consId, projectId) VALUES (?, ?, ?, ?)'
+    const sql2 = 'SELECT COUNT(*) AS c FROM Cons_Project WHERE consId = ? AND projectId = ?'
+
+    var count;
+
+    return db.promise().execute(sql2, [consId, projectId])
+        .then(result => {
+            let data = result[0];
+            count = data[0].c;
+        }).then(() => {            
+            if(count == 0) {
+                return db.promise().execute(sql1, [hours, workType, consId, projectId]);
+            } else {
+                console.log('Ten konsultant jest już przypisany do tego projektu');
+            }
+        })
+};

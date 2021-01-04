@@ -8,18 +8,22 @@
         <input type="hidden" name="consId" value="<%= cons.consId %>">
         <span></span>
 
-        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= cons.firstName %>"
+        <input type="text" name="firstName" id="firstName" placeholder="Imię: 2-60 znaków" value="<%= cons.firstName %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text"></span>
         
-
-        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= cons.lastName %>"
+        <input type="text" name="lastName" id="lastName" placeholder="Nazwisko: 2-60 znaków" label="Nazwisko" value="<%= cons.lastName %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text"></span>
 
-        <input type="email" name="email" id="email" placeholder="np. nazwa@greanleaf.pl" value="<%= cons.email %>"
+        <input type="email" name="email" id="email" placeholder="E-mail: np. nazwa@greanleaf.pl" label="E-mail" value="<%= cons.email %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
         <span id="errorEmail" class="errors-text"></span>
+
+        <% if (formMode == 'createNew') { %>
+        <input type="text" name="pass" id="pass" placeholder="Hasło:" label="pass" />
+        <span id="errorPass" class="errors-text"></span>
+        <% } %>
 
         <% if (formMode == 'showDetails') { %>
             <table class="table-list">
@@ -55,6 +59,15 @@
         <% } %>
 
         <% if (formMode == 'edit') { %>
+            <div class="section-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="button-edit" value="Zapisz"/>
+                <a href="/consultants" class="button-cancel">Anuluj</a>
+            </div>
+        
+        <% } %>
+
+        <% if (formMode == 'createNew') { %>
             <div class="section-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" class="button-edit" value="Zapisz"/>

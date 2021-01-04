@@ -36,7 +36,7 @@ INSERT IGNORE INTO `tin-s16502`.`Consultant` (`consId`, `firstName`, `lastName`,
   (3, 'Piotr', 'Kot', 'piotr.kot@greenleaf.com', 'nowak123')       
 ;
 
-INSERT IGNORE INTO `tin-s16502`.`Project` (`projectId`, `name`, `Date`, `location`) VALUES
+INSERT IGNORE INTO `tin-s16502`.`Project` (`projectId`, `name`, `date`, `location`) VALUES
   (1, 'Astra', '2020-12-31', 'Poznan') ,
   (2, 'Panda', '2021-01-12', 'Szczecin'), 
   (3, 'Neptun', '2019-01-02', 'Warszawa') 
