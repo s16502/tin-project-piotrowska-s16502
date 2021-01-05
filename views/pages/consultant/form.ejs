@@ -3,27 +3,86 @@
         <script type="application/javascript" src="/js/validationConsultForm.js"></script>
         <h2><%= pageTitle %></h2>
 
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <!--<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">-->
+        <form class="form" method="post" action="<%=formAction%>" novalidate >
 
         <input type="hidden" name="consId" value="<%= cons.consId %>">
         <span></span>
 
-        <input type="text" name="firstName" id="firstName" placeholder="Imię: 2-60 znaków" value="<%= cons.firstName %>"
+        <input 
+        <% if (validationErrors != null) { %>
+        class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+        <% } %>
+        type="text" name="firstName" id="firstName" placeholder="Imię: 2-60 znaków" value="<%= cons.firstName %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorFirstName" class="errors-text"></span>
-        
-        <input type="text" name="lastName" id="lastName" placeholder="Nazwisko: 2-60 znaków" label="Nazwisko" value="<%= cons.lastName %>"
-        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorLastName" class="errors-text"></span>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors != null) { %>      
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+            <% } %>
 
-        <input type="email" name="email" id="email" placeholder="E-mail: np. nazwa@greanleaf.pl" label="E-mail" value="<%= cons.email %>"
+
+        </span>
+        
+        <input 
+        <% if (validationErrors != null) { %>
+        class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"
+        <% } %>
+        type="text" name="lastName" id="lastName" placeholder="Nazwisko: 2-60 znaków" label="Nazwisko" value="<%= cons.lastName %>"
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors != null) { %> 
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+            <% } %>
+        </span>
+
+        <input 
+        <% if (validationErrors != null) { %>
+        class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"
+        <% } %>
+        type="email" name="email" id="email" placeholder="E-mail: np. nazwa@greanleaf.pl" label="E-mail" value="<%= cons.email %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
-        <span id="errorEmail" class="errors-text"></span>
+        <span id="errorEmail" class="errors-text">
+            <% if (validationErrors != null) { %> 
+            <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                <%= validationErrors.find(e => e.path.includes('email')).message %>
+            <% } %>
+            <% } %>
+        </span>
 
         <% if (formMode == 'createNew') { %>
-        <input type="text" name="pass" id="pass" placeholder="Hasło:" label="pass" />
-        <span id="errorPass" class="errors-text"></span>
+        <input 
+        <% if (validationErrors != null) { %>
+        class="<%= validationErrors.find(e => e.path.includes('pass')) ? 'error-input' : '' %>"
         <% } %>
+        type="text" name="pass" id="pass" placeholder="Hasło:" label="pass" />
+        <span id="errorPass" class="errors-text">
+            <% if (validationErrors != null) { %> 
+            <% if (validationErrors.find(e => e.path.includes('pass'))) { %>
+                <%= validationErrors.find(e => e.path.includes('pass')).message %>
+            <% } %>
+            <% } %>
+
+        </span>
+        <% } %>
+
+        <% if (formMode == 'edit') { %>
+            <input 
+            <% if (validationErrors != null) { %>
+            class="<%= validationErrors.find(e => e.path.includes('pass')) ? 'error-input' : '' %>"
+            <% } %>
+            type="text" name="pass" id="pass" placeholder="Hasło:" label="pass" />
+            <span id="errorPass" class="errors-text">
+                <% if (validationErrors != null) { %> 
+                <% if (validationErrors.find(e => e.path.includes('pass'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('pass')).message %>
+                <% } %>
+                <% } %>
+            </span>
+            <% } %>
 
         <% if (formMode == 'showDetails') { %>
             <table class="table-list">

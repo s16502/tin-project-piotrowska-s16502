@@ -1,4 +1,6 @@
 const db = require('../../config/mysql2/db');
+const consSchema = require('../../model/joi/Consultant');
+
 
 exports.getConsultants = () => {
     return db.promise().query('SELECT * FROM Consultant')
@@ -63,6 +65,10 @@ return db.promise().query(query, [consId])
 };
 
 exports.createConsultant = (newConsData) => {
+    const vRes = consSchema.validate(newConsData, { abortEarly: false} );
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
     const firstName = newConsData.firstName;
     const lastName = newConsData.lastName;
     const email = newConsData.email;
@@ -72,11 +78,16 @@ exports.createConsultant = (newConsData) => {
 };
 
 exports.updateConsultant = (consId, consData) => {
+    const vRes = consSchema.validate(consData, { abortEarly: false} );
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
     const firstName = consData.firstName;
     const lastName = consData.lastName;
     const email = consData.email;
-    const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ? where consId = ?`;
-    return db.promise().execute(sql, [firstName, lastName, email, consId]);
+    const pass = consData.pass;
+    const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ?, pass = ? where consId = ?`;
+    return db.promise().execute(sql, [firstName, lastName, email, pass, consId]);
 };
 
 exports.deleteConsultant = (consId) => {
@@ -100,19 +111,6 @@ exports.assignConsultant = (consId, projectId, hours, workType) => {
     }
 
     const sql1 = 'INSERT into Cons_Project (hours, workType, consId, projectId) VALUES (?, ?, ?, ?)'
-    const sql2 = 'SELECT COUNT(*) AS c FROM Cons_Project WHERE consId = ? AND projectId = ?'
-
-    var count;
-
-    return db.promise().execute(sql2, [consId, projectId])
-        .then(result => {
-            let data = result[0];
-            count = data[0].c;
-        }).then(() => {            
-            if(count == 0) {
-                return db.promise().execute(sql1, [hours, workType, consId, projectId]);
-            } else {
-                console.log('Ten konsultant jest już przypisany do tego projektu');
-            }
-        })
+    return db.promise().execute(sql1, [hours, workType, projectId, consId]);
+            
 };

@@ -18,7 +18,8 @@ exports.showAddConsultantForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj konsultanta',
         formAction: '/consultants/add',
-        navLocation: 'cons'
+        navLocation: 'cons',
+        validationErrors: null
     });
 }
 
@@ -32,7 +33,8 @@ exports.showEditConsultantForm = (req, res, next) => {
                 pageTitle: 'Edycja konsultanta',
                 btnLabel: 'Edytuj konsultanta',
                 formAction: '/consultants/edit',
-                navLocation: 'cons'
+                navLocation: 'cons',
+                validationErrors: null
             });
         });
 };
@@ -47,7 +49,8 @@ exports.showConsultantDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły konsultanta',
                 formAction: '',
-                navLocation: 'cons'
+                navLocation: 'cons',
+                validationErrors: null
             });
         });
   
@@ -66,8 +69,21 @@ exports.addConsultant = (req, res, next) => {
     ConsultantRepository.createConsultant(consData)
         .then( result => {
             res.redirect('/consultants');
+        })
+        .catch(err => {
+            res.render('pages/consultant/form', {
+                cons: consData,
+                pageTitle: 'Nowy konsultant',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj konsultanta',
+                formAction: '/consultants/add',
+                navLocation: 'cons',
+                validationErrors: err.details
+            });
         });
 };
+
+
 
 exports.updateConsultant = (req, res, next) => {
     const consId = req.body.consId;
@@ -76,6 +92,19 @@ exports.updateConsultant = (req, res, next) => {
     ConsultantRepository.updateConsultant(consId, consData)
         .then( result => {
             res.redirect('/consultants');
+        })
+        .catch(err => {
+            console.log('debug');
+            console.log(err);
+            res.render('pages/consultant/form', {
+                cons: consData,
+                formMode: 'edit',
+                pageTitle: 'Edycja konsultanta',
+                btnLabel: 'Edytuj konsultanta',
+                formAction: '/consultants/edit',
+                navLocation: 'cons',
+                validationErrors: err.details
+            });
         });
 };
 

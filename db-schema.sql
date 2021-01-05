@@ -51,6 +51,7 @@ INSERT IGNORE INTO `tin-s16502`.`Cons_Project` (`cons_projectId`, `hours`, `work
   (6, 7, 'wizja', 2 , 3)
 ;
 
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
 
 
 
