@@ -69,12 +69,22 @@ exports.createConsultant = (newConsData) => {
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    const firstName = newConsData.firstName;
-    const lastName = newConsData.lastName;
-    const email = newConsData.email;
-    const pass = newConsData.pass;
-    const sql = 'INSERT into Consultant (firstName, lastName, email, pass) VALUES (?, ?, ?, ?)'
-    return db.promise().execute(sql, [firstName, lastName, email, pass]);
+    return checkEmailUnique(newConsData.email)
+        .then(emailErr => {
+            if(emailErr.details) {
+                return Promise.reject(emailErr);
+            } else {
+                const firstName = newConsData.firstName;
+                const lastName = newConsData.lastName;
+                const email = newConsData.email;
+                const pass = newConsData.pass;
+                const sql = 'INSERT into Consultant (firstName, lastName, email, pass) VALUES (?, ?, ?, ?)'
+                return db.promise().execute(sql, [firstName, lastName, email, pass]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.updateConsultant = (consId, consData) => {
@@ -82,12 +92,22 @@ exports.updateConsultant = (consId, consData) => {
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    const firstName = consData.firstName;
-    const lastName = consData.lastName;
-    const email = consData.email;
-    const pass = consData.pass;
-    const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ?, pass = ? where consId = ?`;
-    return db.promise().execute(sql, [firstName, lastName, email, pass, consId]);
+    return checkEmailUnique(consData.email)
+        .then(emailErr => {
+            if(emailErr.details) {
+                return Promise.reject(emailErr);
+            } else {
+                const firstName = consData.firstName;
+                const lastName = consData.lastName;
+                const email = consData.email;
+                const pass = consData.pass;
+                const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ?, pass = ? where consId = ?`;
+                return db.promise().execute(sql, [firstName, lastName, email, pass, consId]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.deleteConsultant = (consId) => {
@@ -114,3 +134,29 @@ exports.assignConsultant = (consId, projectId, hours, workType) => {
     return db.promise().execute(sql1, [hours, workType, projectId, consId]);
             
 };
+
+
+checkEmailUnique = (email, consId) => {
+    let sql, promise;
+    if(consId) {
+        sql = `SELECT COUNT(1) as c FROM Consultant where consId != ? and email = ?`
+        promise = db.promise().query(sql, [consId, email]);
+    } else {
+        sql = `SELECT COUNT(1) as c FROM Consultant where email = ?`
+        promise = db.promise().query(sql, [email]);
+    }
+    return promise.then( (results, fields) => {
+        const count = results[0][0].c;
+        let err = {};
+        if(count > 0) {
+            err = {
+                details: [{
+                    path: ['email'],
+                    message: 'Podany adres email jest już używany'
+                }]
+            };
+        }
+        return err;
+    });
+}
+
