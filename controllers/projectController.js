@@ -17,7 +17,8 @@ exports.showAddProjectForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj projekt',
         formAction: '/projects/add',
-        navLocation: 'project'
+        navLocation: 'project',
+        validationErrors: null
     });
 }
 
@@ -31,7 +32,8 @@ exports.showEditProjectForm = (req, res, next) => {
                 pageTitle: 'Edycja projektu',
                 btnLabel: 'Edytuj projekt',
                 formAction: '/projects/edit',
-                navLocation: 'project'
+                navLocation: 'project',
+                validationErrors: null
             });
         });
 };
@@ -46,7 +48,8 @@ exports.showProjectDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły projektu',
                 formAction: '',
-                navLocation: 'project'
+                navLocation: 'project',
+                validationErrors: null
             });
         });
         
@@ -66,6 +69,17 @@ exports.addProject = (req, res, next) => {
     ProjectRepository.createProject(projectData)
         .then( result => {
             res.redirect('/projects');
+        })
+        .catch(err => {
+            res.render('pages/project/form', {
+                project: projectData,
+                pageTitle: 'Nowy projekt',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj projekt',
+                formAction: '/projects/add',
+                navLocation: 'project',
+                validationErrors: err.details
+            });
         });
 };
 
@@ -76,5 +90,19 @@ exports.updateProject = (req, res, next) => {
     ProjectRepository.updateProject(projectId, projectData)
         .then( result => {
             res.redirect('/projects');
+        })
+        .catch(err => {
+            console.log('debug');
+            console.log(err);
+            res.render('pages/project/form', {
+                project: projectData,
+                formMode: 'edit',
+                pageTitle: 'Edycja projektu',
+                btnLabel: 'Edytuj projekt',
+                formAction: '/projects/edit',
+                navLocation: 'project',
+                validationErrors: err.details
+            });
         });
 };
+

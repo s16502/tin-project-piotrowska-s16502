@@ -1,4 +1,5 @@
 const db = require('../../config/mysql2/db');
+const projectSchema = require('../../model/joi/Project');
 
 exports.getProjects = () => {
     return db.promise().query('SELECT * FROM Project')
@@ -60,6 +61,10 @@ return db.promise().query(query, [projectId])
 };
 
 exports.createProject = (newProjectData) => {
+    const vRes = projectSchema.validate(newProjectData, { abortEarly: false} );
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
     const name = newProjectData.name;
     const date = newProjectData.date;
     const location = newProjectData.location;
@@ -68,6 +73,10 @@ exports.createProject = (newProjectData) => {
 };
 
 exports.updateProject = (projectId, projectData) => {
+    const vRes = projectSchema.validate(projectData, { abortEarly: false} );
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
     const name = projectData.name;
     const date = projectData.date;
     const location = projectData.location;

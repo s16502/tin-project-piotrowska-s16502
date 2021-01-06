@@ -4,21 +4,109 @@
         <h2><%= pageTitle %></h2>
 
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <!--<form class="form" method="post" action="<%=formAction%>" novalidate>-->
 
         <input type="hidden" name="projectId" id="projectId" value="<%= project.projectId %>">
         <span></span>
 
-        <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= project.name %>"
+        <input 
+        <% if (validationErrors != null) { %>
+            class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
+        <% } %>
+        type="text" name="name" id="name" placeholder="Nazwa: 2-60 znaków" value="<%= project.name %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorName" class="errors-text"></span>
+        
+        <span id="errorName" class="errors-text">
+            <% if (validationErrors != null) { %>      
+                <% if (validationErrors.find(e => e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('name')).message %>
+                <% } %>
+                <% } %>
+        </span>
+            
+        <% if (formMode == 'showDetails') { %>
 
-        <input type="date" name="date" id="date" value="<%= project.date ? project.date.toISOString().split('T')[0] : '' %>"
-        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorDate" class="errors-text"></span>
+            <input
+            <% if (validationErrors != null) { %>      
+                class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
+            <% } %>
+            type="date" name="date" id="date" value="<%= project.date.toISOString().split('T')[0] %>" 
+             
+            
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+            
+            <span id="errorDate" class="errors-text">
+                <% if (validationErrors != null) { %>                
+                    <% if (validationErrors.find(e => e.path.includes('date'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('date')).message %>
+                <% } %>
+                <% } %>
+            </span>
+    
+            <% } %>
 
-        <input type="text" name="location" id="location" placeholder="2-60 znaków" value="<%= project.location %>"
+
+
+        <% if (formMode == 'edit') { %>
+
+        <input
+        <% if (validationErrors != null) { %>      
+            class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
+        <% } %>
+        type="date" name="date" id="date" 
+        <% if (validationErrors != null) { %>      
+            value="<%= project.date %>"
+        <% } else { %>
+            value="<%= project.date.toISOString().split('T')[0] %>" 
+        <% } %>   
+        
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        
+        <span id="errorDate" class="errors-text">
+            <% if (validationErrors != null) { %>                
+                <% if (validationErrors.find(e => e.path.includes('date'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('date')).message %>
+            <% } %>
+            <% } %>
+        </span>
+
+        <% } %>
+
+        <% if (formMode == 'createNew') { %>
+
+        <input
+        <% if (validationErrors != null) { %>      
+            class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"
+        <% } %>
+        type="date" name="date" id="date" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        
+        <span id="errorDate" class="errors-text">
+            <% if (validationErrors != null) { %>                
+                <% if (validationErrors.find(e => e.path.includes('date'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('date')).message %>
+            <% } %>
+            <% } %>
+        </span>
+
+
+
+        <% } %>
+       
+        <input
+        <% if (validationErrors != null) { %>
+            class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : '' %>"
+        <% } %>
+        type="text" name="location" id="location" placeholder="Lokalizacja: 2-60 znaków" value="<%= project.location %>"
         <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorLocation" class="errors-text"></span>
+        
+        <span id="errorLocation" class="errors-text">
+            <% if (validationErrors != null) { %>      
+                <% if (validationErrors.find(e => e.path.includes('location'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('location')).message %>
+                <% } %>
+                <% } %>
+        </span>
         
         <% if (formMode == 'showDetails') { %>
             <table class="table-list">
