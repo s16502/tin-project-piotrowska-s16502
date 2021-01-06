@@ -53,14 +53,12 @@ function validateForm() {
         valid = false;
         passInput.classList.add("error-input");
         errorPass.innerText = "Pole jest wymagane";
-    } else if (!checkTextLengthRange(passInput.value, 2, 60)) {
+    } else if (!checkTextLengthRange(passInput.value, 2, 100)) {
         valid = false;
         passInput.classList.add("error-input");
-        errorPass.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorPass.innerText = "Pole powinno zawierać od 2 do 100 znaków";
     }
-    
-           
-
+      
     if (!valid) {
         errorsSummary.innerText = "Formularz zawiera błędy";
     }

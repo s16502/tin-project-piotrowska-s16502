@@ -44,7 +44,7 @@ const consSchema = Joi.object({
         .error(errMessages),
     pass: Joi.string()
         .min(2)
-        .max(60)
+        .max(100)
         .required()
         .error(errMessages)
 });

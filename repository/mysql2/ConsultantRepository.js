@@ -1,6 +1,6 @@
 const db = require('../../config/mysql2/db');
 const consSchema = require('../../model/joi/Consultant');
-
+const authUtil = require('../../util/authUtils');
 
 exports.getConsultants = () => {
     return db.promise().query('SELECT * FROM Consultant')
@@ -60,8 +60,29 @@ return db.promise().query(query, [consId])
         console.log(err);
         throw err;
     });
+};
 
+exports.findByEmail = (email) => {
+    
+    const query = `SELECT firstName, lastName, pass FROM Consultant where email = ?`
 
+return db.promise().query(query, [email])
+    .then( (results, fields) => {
+        const firstRow = results[0][0];
+        if(!firstRow) {
+            return {};
+        }
+        const cons = {
+            firstName: firstRow.firstName,
+            lastName: firstRow.lastName,
+            pass:firstRow.pass
+        }
+        return cons;
+    })
+    .catch(err => {
+        console.log(err);
+        throw err;
+    });
 };
 
 exports.createConsultant = (newConsData) => {
@@ -77,7 +98,10 @@ exports.createConsultant = (newConsData) => {
                 const firstName = newConsData.firstName;
                 const lastName = newConsData.lastName;
                 const email = newConsData.email;
-                const pass = newConsData.pass;
+
+                var p = newConsData.pass;
+                const pass = authUtil.hashPassword(p);
+
                 const sql = 'INSERT into Consultant (firstName, lastName, email, pass) VALUES (?, ?, ?, ?)'
                 return db.promise().execute(sql, [firstName, lastName, email, pass]);
             }
@@ -100,7 +124,10 @@ exports.updateConsultant = (consId, consData) => {
                 const firstName = consData.firstName;
                 const lastName = consData.lastName;
                 const email = consData.email;
-                const pass = consData.pass;
+
+                var p = consData.pass;
+                const pass = authUtil.hashPassword(p);
+            
                 const sql = `UPDATE Consultant set firstName = ?, lastName = ?, email = ?, pass = ? where consId = ?`;
                 return db.promise().execute(sql, [firstName, lastName, email, pass, consId]);
             }

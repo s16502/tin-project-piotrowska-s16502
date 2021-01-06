@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `tin-s16502`.`Cons_Project`
     ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 INSERT IGNORE INTO `tin-s16502`.`Consultant` (`consId`, `firstName`, `lastName`, `email`, `pass`) VALUES
-  (1, 'Jan', 'Kowalski', 'jan.kowalski@greenleaf.com', 'kowalski123') ,     
-  (2, 'Anna', 'Nowak', 'anna.nowak@greenleaf.com', 'nowak123') ,   
-  (3, 'Piotr', 'Kot', 'piotr.kot@greenleaf.com', 'nowak123')       
+  (1, 'Jan', 'Kowalski', 'jan.kowalski@greenleaf.com', '$2a$08$xSfRqOrxJlg3TV.xR.3q/.Mh3xEK9fvXMlC2nNsWIYoA1PpfZCiiG') ,     
+  (2, 'Anna', 'Nowak', 'anna.nowak@greenleaf.com', '$2a$08$xSfRqOrxJlg3TV.xR.3q/.nIAXri293310/uJLzVvFFkrnMhufVWO') ,   
+  (3, 'Piotr', 'Kot', 'piotr.kot@greenleaf.com', '$2a$08$xSfRqOrxJlg3TV.xR.3q/.A8xoI0iDPDVUzmZp8sf/4vo1k7dMOxu')       
 ;
 
 INSERT IGNORE INTO `tin-s16502`.`Project` (`projectId`, `name`, `date`, `location`) VALUES

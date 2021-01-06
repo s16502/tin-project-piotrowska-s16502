@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const session = require('express-session');
+const authUtils = require('./util/authUtils');
+
 var indexRouter = require('./routes/index');
 const consultantRouter = require('./routes/consultantRoute');
 const projectRouter = require('./routes/projectRoute');
@@ -23,12 +26,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'my_secret_password',
+  resave: false
+}));
 
+app.use((req, res, next) => {
+  const loggedUser = req.session.loggedUser;
+  res.locals.loggedUser = loggedUser;
+  if(!res.locals.loginError) {
+      res.locals.loginError = undefined;
+  }
+  next();
+});
+
+
+
+//app.use('/consultants', authUtils.permitAuthenticatedUser, consultantRouter);
+//app.use('/projects', authUtils.permitAuthenticatedUser, projectRouter);
+
+app.use('/consultants', authUtils.permitAuthenticatedUser, consultantRouter);
+app.use('/projects', authUtils.permitAuthenticatedUser, projectRouter);
 app.use('/', indexRouter);
-app.use('/consultants', consultantRouter);
-app.use('/projects', projectRouter);
+
 app.use('/api/consultants', consApiRouter);
 app.use('/api/projects', projectApiRouter);
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
