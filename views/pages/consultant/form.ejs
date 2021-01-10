@@ -4,7 +4,7 @@
         <h2><%= pageTitle %></h2>
 
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();"  >
-        <!--<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">-->
+        <!--<form class="form" method="post" action="<%=formAction%>" novalidate >-->
 
         <input type="hidden" name="consId" value="<%= cons.consId %>">
         <span></span>
@@ -57,7 +57,7 @@
             <% if (validationErrors != null) { %>
             class="<%= validationErrors.find(e => e.path.includes('pass')) ? 'error-input' : '' %>"
             <% } %>
-            type="text" name="pass" id="pass" placeholder="Hasło" label="pass" 
+            type="password" name="pass" id="pass" placeholder="Hasło" label="pass" 
             <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
             <span id="errorEmail" class="errors-text">
                 <% if (validationErrors != null) { %> 
