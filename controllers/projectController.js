@@ -1,11 +1,14 @@
 const ProjectRepository = require('../repository/mysql2/ProjectRepository');
 
 exports.showProjectList = (req, res, next) => {
+    
+    const param = req.query.param;
     ProjectRepository.getProjects()
         .then(projects => {
             res.render('pages/project/list', {
                 projects: projects,
-                navLocation: 'project'
+                navLocation: 'project',
+                modified: param
             });
         });
 }
@@ -18,7 +21,8 @@ exports.showAddProjectForm = (req, res, next) => {
         btnLabel: 'Dodaj projekt',
         formAction: '/projects/add',
         navLocation: 'project',
-        validationErrors: null
+        validationErrors: null,
+        modified: {}
     });
 }
 
@@ -33,7 +37,8 @@ exports.showEditProjectForm = (req, res, next) => {
                 btnLabel: 'Edytuj projekt',
                 formAction: '/projects/edit',
                 navLocation: 'project',
-                validationErrors: null
+                validationErrors: null,
+                modified: {}
             });
         });
 };
@@ -49,7 +54,8 @@ exports.showProjectDetails = (req, res, next) => {
                 pageTitle: 'Szczegóły projektu',
                 formAction: '',
                 navLocation: 'project',
-                validationErrors: null
+                validationErrors: null,
+                modified: {}
             });
         });
         
@@ -60,7 +66,7 @@ exports.deleteProject = (req, res, next) => {
     const projectId = req.params.projectId;
     ProjectRepository.deleteProject(projectId)
     .then( () => {
-        res.redirect('/projects');
+        res.redirect('/projects?param=del');
     });
 }
 
@@ -68,7 +74,7 @@ exports.addProject = (req, res, next) => {
     const projectData = { ...req.body };
     ProjectRepository.createProject(projectData)
         .then( result => {
-            res.redirect('/projects');
+            res.redirect('/projects?param=add');
         })
         .catch(err => {
             res.render('pages/project/form', {
@@ -78,7 +84,8 @@ exports.addProject = (req, res, next) => {
                 btnLabel: 'Dodaj projekt',
                 formAction: '/projects/add',
                 navLocation: 'project',
-                validationErrors: err.details
+                validationErrors: err.details,
+                modified: {}
             });
         });
 };
@@ -89,7 +96,7 @@ exports.updateProject = (req, res, next) => {
 
     ProjectRepository.updateProject(projectId, projectData)
         .then( result => {
-            res.redirect('/projects');
+            res.redirect('/projects?param=mod');
         })
         .catch(err => {
             console.log('debug');
@@ -101,7 +108,8 @@ exports.updateProject = (req, res, next) => {
                 btnLabel: 'Edytuj projekt',
                 formAction: '/projects/edit',
                 navLocation: 'project',
-                validationErrors: err.details
+                validationErrors: err.details,
+                modified: {}
             });
         });
 };

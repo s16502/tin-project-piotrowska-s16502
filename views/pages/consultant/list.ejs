@@ -1,5 +1,30 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
+        
+        <% if(modified == 'mod') { %>
+            <div>
+                <p class="message" >Zmodyfikowano konsultanta</p>
+            </div>
+        <% } %>
+
+        <% if(modified == 'del') { %>
+            <div>
+                <p class="message" >Usunięto konsultanta</p>
+            </div>
+        <% } %>
+
+        <% if(modified == 'assign') { %>
+            <div>
+                <p class="message" >Dodano konsultanta do projektu</p>
+            </div>
+        <% } %>
+
+        <% if(modified == 'add') { %>
+            <div>
+                <p class="message" >Dodano nowego konsultanta</p>
+            </div>
+        <% } %>
+        
         <h2>Lista konsultantów</h2>
         <table class="table-list">
             <thead>

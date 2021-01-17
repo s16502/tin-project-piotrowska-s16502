@@ -1,6 +1,6 @@
 
     <%- include('../../fragments/header.ejs') %>
-    
+    <script type="application/javascript" src="/js/validationAssignConsultant.js"></script>
     <main>
         <h2>Przydziel konsultanta do projektu</h2>
 
@@ -25,9 +25,19 @@
             <input type="number" name="hours" id="hours">
             <span id="errorIloscGodz" class="errors-text"></span>
             
+            <select name="workType" id="workType">
+                <option value="selection" selected label="--wybierz typ pracy--" disabled></option>
+                <option value="praca1" label="praca1"></option>
+                <option value="praca2" label="praca2"></option>
+                <option value="praca3" label="praca3"></option>
+                <option value="praca4" label="praca4"></option>
+            </select>
+
+            <!--
             <label for="workType">Typ pracy:</label> 
             <input type="text" name="workType" id="workType">
-            <span id="errorTypPracy" class="errors-text"></span> <!--dodac walidacje-->
+            <span id="errorTypPracy" class="errors-text"></span> 
+            -->
 
             <div class="section-buttons">
                 <p id="errorsSummary" class="errors-text"></p>

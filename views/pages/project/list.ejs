@@ -1,5 +1,24 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
+        
+        <% if(modified == 'mod') { %>
+            <div>
+                <p class="message" >Zmodyfikowano projekt</p>
+            </div>
+        <% } %>
+
+        <% if(modified == 'del') { %>
+            <div>
+                <p class="message" >Usunięto projekt</p>
+            </div>
+        <% } %>
+
+        <% if(modified == 'add') { %>
+            <div>
+                <p class="message" >Dodano nowy projekt</p>
+            </div>
+        <% } %>
+        
         <h2>Lista Projektów</h2>
         <table class="table-list">
             <thead>
